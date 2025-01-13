@@ -19,7 +19,6 @@
         <input type="text" placeholder="Search for recipes">
         <button>Search</button>
         <div class="Main-text">
-            <h>Find the best recipes and share your own creations!</h>
         </div>
     </div>
 </div>

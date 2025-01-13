@@ -20,7 +20,7 @@
             <img src="Public/img/imageMain2.png" class="imageMain2">
             <img src="Public/img/imageMain3.png" class="imageMain3">
             <div class="Main-text">
-                <h>Find the best recipes and share your own creations!</h>
+                <h1>Find the best recipes and share your own creations!</h1>
             </div>
         </div>
     </div>

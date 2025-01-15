@@ -33,15 +33,8 @@ class SecurityController extends AppController
             return $this->render('login',['messages' => ['wrong password or email']]);
         }
         $sessionId = bin2hex(random_bytes(32));
-
-        // Store the session in the database
-        $stmt = $this->database->connect()->prepare('INSERT INTO sessions (session_id, user_id, last_activity) VALUES (:session_id, :user_id, :last_activity)');
-        $stmt->execute([
-            ':session_id' => $sessionId,
-            ':user_id' => $user['id'],
-            ':last_activity' => date('Y-m-d H:i:s')
-        ]);
-
+        $_SESSION['user_id'] = $user->getId();
+        $this->userRepository->activateSession($sessionId, $user->getId());
         // Set the session cookie
         setcookie('session_id', $sessionId, [
             'expires' => time() + 3600, // 1 hour
@@ -50,6 +43,9 @@ class SecurityController extends AppController
             'httponly' => true,
             'samesite' => 'Strict'
         ]);
+        if (!isset($_SESSION['user_id'])) {
+            die("Error: User is not logged in. Please log in first.");
+        }
         $url="http://$_SERVER[HTTP_HOST]";
         header("Location: $url/main");
     }
@@ -76,8 +72,8 @@ class SecurityController extends AppController
         }
 
         $pass = password_hash($password, PASSWORD_DEFAULT);
-        //TODO try to use better hash function
-        $user = new User($email, $pass, $username);
+
+        $user = new User(0, $email, $pass, $username);
 
         $this->userRepository->addUser($user);
 

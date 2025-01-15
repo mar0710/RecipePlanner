@@ -17,6 +17,7 @@ class UserRepository extends Repository
             return null;
         }
         return new User(
+            $user['id'],
             $user['email'],
             $user['password'],
             $user['username']
@@ -41,5 +42,12 @@ class UserRepository extends Repository
         $stmt->execute();
         return $stmt->fetchColumn();
     }
-
+    public function activateSession($sessionId, $userId): void{
+        $stmt = $this->database->connect()->prepare('INSERT INTO sessions (session_id, user_id, last_activity) VALUES (:session_id, :user_id, :last_activity)');
+        $stmt->execute([
+            ':session_id' => $sessionId,
+            ':user_id' => $userId,
+            ':last_activity' => date('Y-m-d H:i:s')
+        ]);
+    }
 }

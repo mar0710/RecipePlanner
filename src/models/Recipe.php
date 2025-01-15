@@ -5,10 +5,32 @@ namespace models;
 class Recipe
 {
     private int $user_id;
-
     private string $name;
     private string $description;
     private string $image;
+    private float $rating;
+
+    public function getUserId(): int
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(int $user_id): void
+    {
+        $this->user_id = $user_id;
+    }
+
+    public function getRating(): float
+    {
+        return $this->rating;
+    }
+
+    public function setRating(float $rating): void
+    {
+        $this->rating = $rating;
+    }
+
+
 
     public function __construct(int $user_id, string $name, string $description, string $image){
         $this->user_id = $user_id;

@@ -4,15 +4,27 @@ namespace models;
 
 class User
 {
+    private int $id;
     private string $userName;
     private string $password;
     private string $email;
 
-    public function __construct(string $email, string $password, string $userName)
+    public function __construct(int $id, $email, string $password, string $userName)
     {
+        $this->id = $id;
         $this->userName = $userName;
         $this->password = $password;
         $this->email = $email;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     public function getUserName(): string

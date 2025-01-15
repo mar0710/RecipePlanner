@@ -18,8 +18,24 @@
     <div class="default-page">
         <input type="text" placeholder="Search for recipes">
         <button>Search</button>
-        <div class="Main-text">
-        </div>
+        <section class="recipes">
+<!--            --><?php //foreach ($recipes as $recipe): ?>
+<!--                <div id="--><?php //= $recipe->getId(); ?><!--">-->
+<!--                    <img src="Public/uploads/--><?php //= $recipe->getImage(); ?><!--">-->
+<!--                    <div>-->
+<!--                        <h2>--><?php //= $recipe->getName(); ?><!--</h2>-->
+<!--                        --><?php //foreach ($recipe->getIngredients() as $ingredient):?>
+<!--                            <p>--><?php //= $ingredient->getAmount(); ?><!--</p>-->
+<!--                            <p>--><?php //= $ingredient->getAmount(); ?><!--</p>-->
+<!--                        --><?php //endforeach; ?>
+<!--                        <p>--><?php //= $recipe->getDescription(); ?><!--</p>-->
+<!--                        <div class="social-section">-->
+<!--                            <i class="fas fa-heart"> --><?php //= $recipe->getRating(); ?><!--</i>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            --><?php //endforeach; ?>
+        </section>
     </div>
 </div>
 </body>y>

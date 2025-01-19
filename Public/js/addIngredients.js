@@ -1,7 +1,22 @@
 const ingredientsContainer = document.getElementById('ingredients-container');
 const addIngredientButton = document.getElementById('add-ingredient');
+const fileInput = document.getElementById('file');
+const imagePreview = document.getElementById('imagePreview');
+fileInput.addEventListener('change', (event) => {
+  const file = event.target.files[0];
+  console.log(event.target.files);
+  if (file) {
+    const reader = new FileReader();
 
-// Function to add a new component input row
+    reader.onload = (e) => {
+      imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview" />`;
+    };
+
+    reader.readAsDataURL(file);
+  } else {
+    imagePreview.innerHTML = '+';
+  }
+});
 const addIngredientRow = () => {
   const row = document.createElement('div');
   row.classList.add('component-row');
@@ -12,7 +27,6 @@ const addIngredientRow = () => {
       <button type="button" class="remove-row">Remove</button>
     `;
 
-  // Add event listener for the "Remove" button
   row.querySelector('.remove-row').addEventListener('click', () => {
   row.remove();
   });
@@ -20,8 +34,6 @@ const addIngredientRow = () => {
   ingredientsContainer.appendChild(row);
 };
 
-// Add initial row
 addIngredientRow();
 
-// Add new row when "Add Component" button is clicked
 addIngredientButton.addEventListener('click', addIngredientRow);

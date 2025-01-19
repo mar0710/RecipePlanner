@@ -7,7 +7,7 @@ body {
 .container {
     width: 100vw;
     height: 100vh;
-    background:#025D59 100%;
+    background:#45050C 100%;
 
     display: flex;
     flex-direction: row;
@@ -28,7 +28,7 @@ body {
     top: 20px; 
     left: 50%; 
     transform: translateX(-50%); 
-    color: #DADADA;
+    color: #EECF6D;
     font-size: 36px; 
     font-weight: 200;
     text-align: center; 
@@ -62,7 +62,7 @@ input[type="email"]{
     font-size: 17px;
     color:black;
     border: 2px solid #ccc;
-    background:#DADADA;
+    background:#EECF6D;
     border-radius: 5px;
     border-width: 5px;
     outline: none;
@@ -72,7 +72,7 @@ input[type="email"]{
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus {
-    border-color: #35d3be;
+    border-color: #8B6220;
     /*border-width: 1px;*/
 }
 .rightArrow{
@@ -84,7 +84,7 @@ input[type="email"]:focus {
     justify-content: center;
     cursor: pointer;
     border-radius: 0 4px 4px 0;
-    background-color: #DADADA;
+    background-color: #EECF6D;
 }
 .arrowButton img {
     width: 24px;
@@ -98,7 +98,7 @@ input[type="email"]:focus {
 
 .signup-text {
     font-size: 16px;
-    color: #DADADA;
+    color: #EECF6D;
     text-align: center;
 }
 
@@ -107,12 +107,12 @@ input[type="email"]:focus {
     display: inline-flex; 
     justify-content: center; 
     align-items: center; 
-    background: #DADADA;
+    background: #EECF6D;
     box-shadow: 0px 3px 6px #00000029;
     border-radius: 19px;
     width: 50%;
     border: none;
-    color: #087B75;
+    color: #720E07;
     margin: 1em;
     height: 2.5em; 
     font-size: 1em; 
@@ -120,7 +120,7 @@ input[type="email"]:focus {
     text-decoration: none; 
 }
 .signup-button:hover {
-    background-color: #35d3be;
+    background-color: #8B6220;
 }
 
 input {
@@ -163,7 +163,7 @@ input {
     position: absolute;
     top: 10%;
     transform: translateX(-50%); 
-    color: #DADADA;
+    color: #EECF6D;
     font-size: 88px; 
     font-weight: 90;
 }
@@ -191,12 +191,12 @@ input {
 .createAccount-text{
     top:50px;
     font-size:45px;
-    color:#DADADA
+    color:#EECF6D
 }
 .passwordRule-text{
     margin: 0;
     font-size:14px;
-    color:#DADADA;
+    color:#EECF6D;
 }
 .create-account-button{
     display: inline-flex;
@@ -207,7 +207,7 @@ input {
     border-radius: 19px;
     width: 40%;
     border: none;
-    color: #087B75;
+    color: #720E07;
     margin: 4em;
     height: 2.5em; 
     font-size:1em; 
@@ -226,15 +226,16 @@ input {
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 .main-container{
-    background-color:#087B75;
+    background-color:#720E07;
     width: 100vw;
     height: 100vh;
     justify-content: center;
     align-items: center;
+
 }
 
 .nav{
-    background-color: #025D59;
+    background-color: #45050C;
     position:absolute;
     display:flex;
     flex-direction:row;
@@ -248,6 +249,22 @@ input {
     display: flex; 
     justify-content: center; 
     align-items: center; 
+}
+.logout-button {
+    background-color: #720E07;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.logout-button:hover {
+    background-color: #45050C;
 }
 .imageMain1{
     position:absolute;
@@ -284,22 +301,22 @@ input {
   
   li a {
     display: block;
-    color: #DADADA;
+    color: #EECF6D;
     text-align: center;
     padding: 20px 10px;
     text-decoration: none;
   }
   
   li a:hover {
-    background-color: #35d3be;
+    background-color: #8B6220;
   }
   .main-text{
     font-size: 50px;
-    color:#DADADA
+    color:#EECF6D
   }
   /*/////////////////////////////////////////////////////////////////////////////////////////////////////////*/
   .StandardContainer{
-    background-color: #087B75;
+    background-color: #720E07;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -346,7 +363,7 @@ input {
     font-size: 16px;
     text-decoration: none;
     color: white;
-    background-color: #1AB8B1;
+    background-color: #8B6220;
     border-radius: 5px;
     text-align: center;
     width: 120px;
@@ -355,23 +372,22 @@ input {
     transform: translateY(-50%);
 }
 .myAccount-button:hover {
-    background-color: #35d3be;
+    background-color: #720E07;
 }
 
 /*///////////////////////////////////////////////////////////////////////*/
 .default-page{
-    background-color: #DADADA;
+    background-color: #EECF6D;
     width: 96%;
     left: 2%;
     height: 90%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    overflow: hidden;
     bottom: 0;
+    justify-content: flex-start;
     position: absolute;
-    border-top-left-radius: 3%;
-    border-top-right-radius: 3%;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.2), 5px 0 10px rgba(0, 0, 0, 0.2);
 }
 .addRecipe{
     position: absolute;
@@ -431,39 +447,29 @@ input {
     justify-content: center;
 }
 .file-upload {
+    width: 200px;
+    height: 200px;
+    border: 2px dashed #ccc;
     display: flex;
     align-items: center;
-    position: relative;
-    width: 60%;
-    left: 10%;
-    height: 80%;
-    background-color: lightblue;
-    border-color: darkgray;
-    border: solid;
-    border-width: thin;
-    flex-direction: column;
-    border-radius: 5%;
+    justify-content: center;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    font-size: 24px;
+    color: #aaa;
+    left:10%
 }
-
+.file-upload img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
 
 .file-name {
     font-family: Arial, sans-serif;
     color: #333;
 }
-input[type="ingredient-text"] {
-    position: relative;
-    flex:1;
-    width: 60%;
-    height: 60%;
-    padding: 10px;
-    font-size: 17px;
-    color:black;
-    border: 2px solid #ccc;
-    background:#DADADA;
-    border-radius: 5px;
-    outline: none;
-    transition: border-color 0.3s;
-}
+
 .add-recipe-description{
     position: relative;
     width: 90%;
@@ -483,7 +489,7 @@ input[name="amount[]"]{
     font-size: 13px;
     color:black;
     border: 2px solid #ccc;
-    background:#DADADA;
+    background:#EECF6D;
     border-radius: 5px;
     outline: none;
     transition: border-color 0.3s;
@@ -495,19 +501,10 @@ input[name="product[]"]{
     font-size: 13px;
     color:black;
     border: 2px solid #ccc;
-    background:#DADADA;
+    background:#EECF6D;
     border-radius: 5px;
     outline: none;
     transition: border-color 0.3s;
-}
-.ingredient-input{
-    /*position: relative;*/
-    /*width: 90%;*/
-    /*height: 80%;*/
-    /*display: flex;*/
-    /*flex-direction: row;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
 }
 .add-recipe-name{
     flex:1;
@@ -516,7 +513,7 @@ input[name="product[]"]{
     font-size: 17px;
     color:black;
     border: 2px solid #ccc;
-    background:#DADADA;
+    background:#EECF6D;
     border-radius: 5px;
     outline: none;
     transition: border-color 0.3s;
@@ -530,7 +527,39 @@ input[name="product[]"]{
     justify-content: center;
     align-items: center;
 }
-.ingredients-container-row{}
+
 .ingredient-row {
     margin-bottom: 10px;
+}
+
+
+/*/////////////////////////////////////////////////////////*/
+.search-bar{
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    top:0;
+    margin-top: 10px;
+    padding: 10px;
+    flex-direction: row;
+}
+input[name="key"]{
+    flex:1;
+    width: 450px;
+    padding: 10px;
+    font-size: 17px;
+    color:black;
+    border: 2px solid #ccc;
+    background:#EECF6D;
+    border-radius: 5px;
+    outline: none;
+}
+.search-button{
+    flex:1;
+    width: 100px;
+    padding: 10px;
+    font-size: 17px;
+    color:black;
+    border: 2px solid #ccc;
+    border-radius: 5px;
 }

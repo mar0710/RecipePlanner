@@ -79,5 +79,17 @@ class SecurityController extends AppController
 
         return $this->render('login', ['messages' => ['You\'ve been succesfully registrated!']]);
     }
+    public function myAccount(){
+        session_start();
+        $user = $this->userRepository->getUserById($_SESSION['user_id']);
+        return $this->render('myAccount', ['user' => $user]);
+    }
+
+    public function logout(){
+        session_start();
+        session_destroy();
+        $this->render('login');
+        exit();
+    }
 
 }

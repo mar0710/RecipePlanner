@@ -4,11 +4,21 @@ namespace models;
 
 class Recipe
 {
+    private int $id;
     private int $user_id;
     private string $name;
     private string $description;
     private string $image;
     private float $rating;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
 
     public function getUserId(): int
     {
@@ -32,11 +42,12 @@ class Recipe
 
 
 
-    public function __construct(int $user_id, string $name, string $description, string $image){
+    public function __construct(int $user_id, string $name, string $description, string $image, int $id){
         $this->user_id = $user_id;
         $this->name = $name;
         $this->description = $description;
         $this->image = $image;
+        $this->id = $id;
     }
 
     public function getImage():string

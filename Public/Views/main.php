@@ -13,6 +13,9 @@
                 <li><a href="planner">planner</a></li>
                 <li><a href="favorites">favorites</a></li>
                 <li><a href="myAccount">my account</a></li>
+                <form method="POST" action="logout">
+                    <button type="submit" class="logout-button">Log Out</button>
+                </form>
             </div>
         </div>
         <div class="main-page">

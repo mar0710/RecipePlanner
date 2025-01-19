@@ -12,9 +12,13 @@
         <form class="default-page" id="components-form" method="POST" action="addRecipe" ENCTYPE="multipart/form-data">
             <div class="recipe-container-up">
                 <div class="recipe-container-photo">
-                    <div class="file-upload">
-                        <input type="file" name="file"/><br/>
-                    </div>
+<!--                    <div class="file-upload">-->
+<!--                        <input type="file" name="file"/><br/>-->
+<!--                    </div>-->
+                    <label for="file">
+                        <div id="imagePreview" class="file-upload">+</div>
+                    </label>
+                    <input type="file" id="file" name="file" accept="image/*" style="display: none;" />
                 </div>
                 <div class="recipe-container-ingrediants">
                     <input name="recipeName" type="text" placeholder="recipe name" class="add-recipe-name" required>

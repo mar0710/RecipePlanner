@@ -10,12 +10,12 @@
         </div>
         <div class="myAccountLeft">
             <p class="mATitle-text">user name</p>
-            <p class="mAData-text"></p>
+            <p class="mAData-text" ><?= $user->getUserName(); ?></p>
             <p class="mATitle-text">e-mail</p>
-            <p class="mAData-text"></p>
+            <p class="mAData-text" ><?= $user->getEmail(); ?></p>
             <p class="mATitle-text">password</p>
-            <p class="mAData-text"></p>
-            <a href="myRecipes" class="myAccount-button">YOUR RECIPES</a>
+            <p class="mAData-text" > ************** </p>
+            <a href="myRecipes" class="myAccount-button" >YOUR RECIPES</a>
         </div>
         <div class="myAccountRight">
             <div class="userPicture">

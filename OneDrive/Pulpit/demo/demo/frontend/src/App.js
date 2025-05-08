@@ -1,41 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
-import {Component} from "react";
+import React, { Component } from "react";
+import "./App.css";
+import Home from "./Home";
+import Login from "./Login";
+import RecipeList from "./RecipeList";
+import RecipeEdit from "./RecipeEdit";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+
 class App extends Component {
-  state = {
-    recipes: []
-  };
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoggedIn: false,
+        };
+    }
 
-  async componentDidMount() {
-    const response = await fetch('/recipes');
-    const body = await response.json();
-    this.setState({recipes: body});
-  }
+    handleLogin = () => {
+        this.setState({ isLoggedIn: true });
+    };
 
-  render() {
-    const {recipes} = this.state;
-    return (
-        <div className="App">
-          <header className="App-header">
-            {/*<img src={logo} className="App-logo" alt="logo" />*/}
-            <div className="App-intro">
-              <h2>Recipes</h2>
-              <div className="recipe-list">
-                {recipes.map(recipe =>
-                    <div className="recipe-box" key={recipe.id}>
-                      <div className="recipe-name">
-                        {recipe.name}
-                      </div>
-                      <div className="description">
-                        {recipe.description}
-                      </div>
-                    </div>
-                )}
-              </div>
-            </div>
-          </header>
-        </div>
-    );
-  }
+    render() {
+        const { isLoggedIn } = this.state;
+
+        return (
+            <Router>
+                <Routes>
+                    {!isLoggedIn && (
+                        <Route path="*" element={<Login onLogin={this.handleLogin} />} />
+                    )}
+
+                    {isLoggedIn && (
+                        <>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/recipes" element={<RecipeList />} />
+                            <Route path="/recipes/:id" element={<RecipeEdit />} />
+                            {/* Redirect any unknown route to Home */}
+                            <Route path="*" element={<Navigate to="/" />} />
+                        </>
+                    )}
+                </Routes>
+            </Router>
+        );
+    }
 }
+
 export default App;

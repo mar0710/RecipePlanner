@@ -1,29 +1,53 @@
 package com.example.demo.model;
-
 import jakarta.persistence.*;
 import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name="recipes")
 public class Recipe {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "id", nullable = false)
     private Long id;
     @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, columnDefinition = "text")
     private String description;
     @Column(name = "imgname", nullable = false)
     private String imgName;
-    @Column(name = "rating", nullable = false)
+    @Column(name = "rating", nullable = true)
     private double rating;
     @Column(name = "posttime", nullable = false)
     private String postTime;
     @Column(name = "authorid", nullable = false)
     private Long authorId;
+
+
+    @Column(name="approved", nullable = false)
+    private boolean isApproved;
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ingredient> ingredients = new ArrayList<>();
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+    public boolean isApproved() {
+        return isApproved;
+    }
+
+    public void setIsApproved(boolean approved) {
+        this.isApproved = approved;
+    }
 
 
     public Long getAuthorId() {
@@ -52,10 +76,6 @@ public class Recipe {
     }
 
 
-
-//    @OneToMany(mappedBy = "recipeId", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Ingredient> ingredients;
-
     public Recipe() {}
 
     public String getImgName() {
@@ -66,10 +86,10 @@ public class Recipe {
         this.imgName = imgName;
     }
 
-    public Recipe(String name, String description/*, List<Ingredient> ingredients*/) {
+    public Recipe(String name, String description, List<Ingredient> ingredients) {
         this.name = name;
         this.description = description;
-//        this.ingredients = ingredients;
+        this.ingredients = ingredients;
     }
 
     public Long getId() { return id; }
@@ -78,6 +98,19 @@ public class Recipe {
     public void setName(String name) { this.name = name; }
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
-//    public List<Ingredient> getIngredients() { return ingredients; }
-//    public void setIngredients(List<Ingredient> ingredients) { this.ingredients = ingredients; }
-}
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public void addIngredient(Ingredient ingredient) {
+        ingredients.add(ingredient);
+        ingredient.setRecipe(this);
+    }
+    public void removeIngredient(Ingredient ingredient) {
+        ingredients.remove(ingredient);
+        ingredient.setRecipe(null);
+    }}

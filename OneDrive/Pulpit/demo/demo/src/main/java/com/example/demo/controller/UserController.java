@@ -1,64 +1,28 @@
 package com.example.demo.controller;
-import java.util.List;
-
-import com.example.demo.UserNotFoundException;
-import com.example.demo.model.User;
-import com.example.demo.repository.UserRepository;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.demo.dtos.Profile;
+import com.example.demo.service.UserDetailsServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-class UserController {
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/api/user")
+public class UserController {
+    @Autowired
+    UserDetailsServiceImpl userService;
 
-    private final UserRepository repository;
-
-    UserController(UserRepository repository) {
-        this.repository = repository;
+    @DeleteMapping
+    void deleteUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        userService.deleteUser(auth);
     }
 
-
-    // Aggregate root
-    // tag::get-aggregate-root[]
-    @GetMapping("/users")
-    List<User> all() {
-        return repository.findAll();
-    }
-    // end::get-aggregate-root[]
-
-    @PostMapping("/users")
-    User newUser(@RequestBody User newUser) {
-        return repository.save(newUser);
-    }
-
-    // Single item
-
-    @GetMapping("/users/{id}")
-    User one(@PathVariable Long id) {
-
-        return repository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(id));
-    }
-
-    @PutMapping("/users/{id}")
-    User replaceUser(@RequestBody User newUser, @PathVariable Long id) {
-
-        return repository.findById(id)
-                .map(user -> {
-                    user.setUserName(newUser.getUserName());
-                    return repository.save(user);
-                })
-                .orElseGet(() -> {
-                    return repository.save(newUser);
-                });
-    }
-
-    @DeleteMapping("/users/{id}")
-    void deleteUser(@PathVariable Long id) {
-        repository.deleteById(id);
+    @GetMapping
+    public ResponseEntity<Profile> getProfile(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return ResponseEntity.ok(userService.getProfile(auth));
     }
 }

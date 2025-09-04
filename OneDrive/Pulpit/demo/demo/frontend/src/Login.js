@@ -1,50 +1,61 @@
 import React, { useState } from 'react';
-
-const Login = ({ onLogin }) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
-
-    const handleSubmit = async (e) => {
+import "./App.css";
+import { useNavigate, Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
+import PropTypes from 'prop-types';
+export default function Login({ onLogin }){
+    const [form, setForm] = useState({ username: '', password: '' });
+    const navigate = useNavigate();
+    const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+    const handleLogin = async (e) => {
         e.preventDefault();
-
-        const response = await fetch('http://localhost:8080/auth/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
-            body: JSON.stringify({ email, password }),
-        });
-
-        if (response.ok) {
-            setMessage("Login successful");
+        try {
+            const res = await axios.post('http://localhost:8080/api/auth/login', form);
+            localStorage.setItem('token', res.data.token);
             onLogin();
-        } else {
-            setMessage("Invalid credentials");
+            navigate("/");
+        } catch {
+            alert('Login failed');
         }
     };
 
 
     return (
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <button type="submit">Login</button>
-            </form>
-            <p>{message}</p>
+        <div className={"body-login"}>
+            <img src="/logo.svg" alt={"logo"} className={"login-logo"}/>
+            <div className={"wrapper"}>
+
+                <div className={"title"}>
+                    Login
+                </div>
+                <form onSubmit={handleLogin}>
+                    <div className={"field"}>
+                        <input name="username" value={form.username} onChange={handleChange} placeholder="Username"/>
+                    </div>
+                    <div className={"field"}>
+                        <input name="password" type="password" value={form.password} onChange={handleChange}
+                               placeholder="Password"/>
+                    </div>
+                    <div className="content">
+                        <div className="pass-link">
+                            <a href="#">Forgot password?</a>
+                        </div>
+                    </div>
+                    <div className="field">
+                        <input type="submit" value="Login"/>
+                    </div>
+                    <div className="signup-link">
+                        <a href="/signup">Signup now</a>
+                    </div>
+                </form>
+
+
+            </div>
+
         </div>
     );
 };
-
-export default Login;
+Login.propTypes = {
+    onLogin: PropTypes.func.isRequired,
+};

@@ -1,23 +1,9 @@
 import React, {Component} from 'react';
-import {Navbar, NavbarBrand} from 'reactstrap';
-import {Link} from 'react-router-dom';
-const handleLogout = async () => {
-    try {
-        const response = await fetch("http://localhost:8080/auth/logout", {
-            method: "POST",
-            credentials: "include",
-        });
+import { Navbar, Nav, NavItem, NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 
-        if (response.ok) {
-            window.location.href = "/";
-        } else {
-            console.error("Logout failed");
-        }
-    } catch (error) {
-        console.error("Error during logout:", error);
-    }
-};
+
 class AppNavbar extends Component {
     constructor(props) {
         super(props);
@@ -32,10 +18,58 @@ class AppNavbar extends Component {
     }
 
     render() {
-        return <Navbar color="dark" dark expand="md">
-            <NavbarBrand tag={Link} to="/">Home</NavbarBrand>
-            <button onClick={handleLogout}>Logout</button>
-        </Navbar>;
+        return (
+            <div className={"AppNavbar"}>
+                <Navbar expand="md" className="custom-navbar">
+                    <img
+                        src='/favicon.svg'
+                        padding-right='20px'
+                        height='30'
+                        alt=''
+                        loading='lazy'
+                    />
+                    <Nav className="me-auto" navbar>
+                        <NavItem>
+                            <NavLink tag={Link} to="/" className="nv-link">
+                            Home
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to="/recipes" className="nv-link">
+                                Recipes
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to="/recipes/upload" className="nv-link">
+                                Add recipe
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to="/planner" className="nv-link">
+                                Planner
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to="/shoppinglist" className="nv-link">
+                                ShoppingList
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to="/profile" className="nv-link">
+                                Profile
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+                    <Nav className="ms-auto" navbar>
+                        <NavItem>
+                            <NavLink href="#" onClick={this.props.onLogout} className="nav-link">
+                                Logout
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+                </Navbar>
+            </div>
+        );
     }
 }
 

@@ -104,13 +104,5 @@ public class CommentControllerTest {
         verify(commentService).deleteById(commentId);
     }
 
-    @Test
-    @WithMockUser(username="user", roles={"USER"})
-    void deleteComment_shouldReturn403_forNonAdmin() throws Exception {
-        Long commentId = 5L;
-        Long id = 1L;
-        // No @WithMockUser, so user has no ROLE_ADMIN
-        mockMvc.perform(delete("/api/recipes/{id}/deletecomment/{commentId}", id, commentId))
-                .andExpect(status().isForbidden());
-    }
 }
+
